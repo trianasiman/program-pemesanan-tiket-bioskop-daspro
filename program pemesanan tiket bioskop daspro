@@ -1,0 +1,74 @@
+genre = ["Action", "Horror", "Drama", "Comedi", "Anime"]
+
+print("Daftar Genre:")
+for i in range(len(genre)):
+    print(f"{i+1}. {genre[i]}")
+
+genre_pilihan = int(input("Pilih jenis genre (angka): "))
+
+if isinstance(genre_pilihan, int):
+    genre_pilihan -= 1
+    if genre_pilihan < 0 or genre_pilihan >= len(genre):
+        print("Genre tidak valid!")
+        exit()
+else:
+    genre_pilihan = genre_pilihan.lower()
+    if genre_pilihan not in genre:
+        print("Genre tidak valid!")
+        exit()
+
+genre_terpilih = genre[genre_pilihan]
+
+film = {
+    "Action": ["John Wick", "The Avengers", "Fast & Furious"],
+    "Horror": ["Annabelle", "Pengabdi Setan", "The Nun"],
+    "Drama": ["Parasite", "The Shawshank Redemption", "Titanic"],
+    "Comedi": ["Warkop DKI Reborn", "Cek Toko Sebelah", "Yowis Ben"],
+    "Anime": ["Spirited Away", "Your Name", "Weathering with You"],
+}
+
+print(f"\nDaftar Film ({genre_terpilih}):")
+for i in range(len(film[genre_terpilih])):
+    print(f"{i+1}. {film[genre_terpilih][i]}")
+
+film_pilihan = int(input("Pilih film (angka): "))
+
+if isinstance(film_pilihan, int):
+    film_pilihan -= 1
+    if film_pilihan < 0 or film_pilihan >= len(film[genre_terpilih]):
+        print("Film tidak valid!")
+        exit()
+else:
+    film_pilihan = film_pilihan.lower()
+    if film_pilihan not in film[genre_terpilih]:
+        print("Film tidak valid!")
+        exit()
+
+film_terpilih = film[genre_terpilih][film_pilihan]
+
+waktu_nonton = input("Masukkan hari (Senin-Minggu): ")
+if waktu_nonton in ["Senin", "Selasa", "Rabu", "Kamis"]:
+    harga = 40000
+else:
+    harga = 50000
+
+jumlah_orang = int(input("Masukkan jumlah orang: "))
+
+konfirmasi = input("Beli tiket? (y/n): ").lower()
+
+if konfirmasi == "y":
+    nama = input("Masukkan nama: ")
+    umur = int(input("Masukkan umur: "))
+
+    print("\nDetail Pemesanan:")
+    print(f"Nama: {nama}")
+    print(f"Umur: {umur}")
+    print(f"Genre: {genre_terpilih}")
+    print(f"Film: {film_terpilih}")
+    print(f"Jumlah: {jumlah_orang}")
+    print(f"Harga: Rp{harga * jumlah_orang}")
+    print(f"Waktu: {waktu_nonton}")
+
+    print("\nTerima kasih atas pembelian Anda!")
+else:
+    print("Pembelian dibatalkan.")
